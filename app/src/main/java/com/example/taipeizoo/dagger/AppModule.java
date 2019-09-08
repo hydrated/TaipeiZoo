@@ -1,6 +1,10 @@
 package com.example.taipeizoo.dagger;
 
 import android.app.Application;
+import android.arch.persistence.room.Room;
+
+import com.example.taipeizoo.db.ZooDatabase;
+import com.example.taipeizoo.db.ZooFieldDao;
 
 import javax.inject.Singleton;
 
@@ -9,6 +13,7 @@ import dagger.Provides;
 
 @Module
 public class AppModule {
+
     private Application mApplication;
 
     public AppModule(Application application) {
@@ -20,4 +25,5 @@ public class AppModule {
     Application providesApplication() {
         return mApplication;
     }
+
 }

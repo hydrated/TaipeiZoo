@@ -5,6 +5,7 @@ import android.app.Application;
 import com.example.taipeizoo.dagger.AppComponent;
 import com.example.taipeizoo.dagger.AppModule;
 import com.example.taipeizoo.dagger.DaggerAppComponent;
+import com.example.taipeizoo.dagger.DbModule;
 import com.example.taipeizoo.dagger.NetModule;
 import com.example.taipeizoo.service.request.ZooApi;
 
@@ -21,6 +22,7 @@ public class MainApplication extends Application {
 
         mComponent = DaggerAppComponent.builder()
                 .appModule(new AppModule(this))
+                .dbModule(new DbModule(this))
                 .netModule(new NetModule(this, BuildConfig.URL))
                 .build();
         mComponent.inject(this);
