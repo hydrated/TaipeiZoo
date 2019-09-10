@@ -15,9 +15,4 @@ public interface AppComponent {
 
     void inject(MainActivity activity);
 
-
-    ZooFieldDao zooFieldDao();
-
-    ZooDatabase zooDatabase();
-
 }

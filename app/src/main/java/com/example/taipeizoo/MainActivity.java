@@ -1,27 +1,30 @@
 package com.example.taipeizoo;
 
-import android.arch.persistence.room.Insert;
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProvider;
+import android.arch.lifecycle.ViewModelProviders;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
 import com.example.taipeizoo.db.ZooDatabase;
-import com.example.taipeizoo.db.ZooFieldDao;
-import com.example.taipeizoo.model.Response;
 import com.example.taipeizoo.model.ZooField;
+import com.example.taipeizoo.service.Resource;
 import com.example.taipeizoo.service.request.ZooApi;
+import com.example.taipeizoo.viewmodel.ZooFieldViewModel;
+
+import java.util.List;
 
 import javax.inject.Inject;
-
-import io.reactivex.Completable;
-import io.reactivex.functions.Action;
-import io.reactivex.schedulers.Schedulers;
-import retrofit2.Call;
-import retrofit2.Callback;
 
 public class MainActivity extends AppCompatActivity {
 
 
+    @Inject
+    ViewModelProvider.Factory viewModelFactory;
+    private ZooFieldViewModel zooFieldViewModel;
     @Inject
     ZooDatabase zooDatabase;
     @Inject
@@ -34,26 +37,11 @@ public class MainActivity extends AppCompatActivity {
 
         ((MainApplication) getApplication()).getComponent().inject(this);
 
-        zooApi.searchReposRX("").enqueue(new Callback<Response>() {
+        zooFieldViewModel = ViewModelProviders.of(this, viewModelFactory).get(ZooFieldViewModel.class);
+        zooFieldViewModel.getZooFields().observe(this, new Observer<Resource<List<ZooField>>>() {
             @Override
-            public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
-                final ZooField[] zooFields = response.body().result.results.toArray(new ZooField[0]);
-                final ZooFieldDao dao = zooDatabase.getZooFieldDao();
-                Completable.fromAction(new Action() {
-                    @Override
-                    public void run() throws Exception {
-                        dao.insert(zooFields);
-                        ZooField[] fields = dao.getAllZooFields();
-                        Log.d("hydrated", "");
-                    }
-                }).subscribeOn(Schedulers.io()).subscribe();
-
-                Log.d("hydrated", "");
-            }
-
-            @Override
-            public void onFailure(Call<Response> call, Throwable t) {
-                Log.d("hydrated", "");
+            public void onChanged(@Nullable Resource<List<ZooField>> listResource) {
+                Log.d("hydrated", ""+listResource);
             }
         });
     }
