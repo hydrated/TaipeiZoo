@@ -1,7 +1,8 @@
 package com.example.taipeizoo.viewmodel;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.ViewModel;
+
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModel;
 
 import com.example.taipeizoo.model.ZooField;
 import com.example.taipeizoo.repository.ZooFieldRepository;

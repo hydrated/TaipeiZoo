@@ -1,7 +1,8 @@
 package com.example.taipeizoo.repository;
 
-import android.arch.lifecycle.LiveData;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
 
 import com.example.taipeizoo.db.ZooFieldDao;
 import com.example.taipeizoo.model.ZooField;

@@ -1,7 +1,8 @@
 package com.example.taipeizoo.dagger;
 
 import android.app.Application;
-import android.arch.persistence.room.Room;
+
+import androidx.room.Room;
 
 import com.example.taipeizoo.db.ZooDatabase;
 import com.example.taipeizoo.db.ZooFieldDao;

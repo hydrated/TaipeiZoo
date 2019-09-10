@@ -1,11 +1,12 @@
 package com.example.taipeizoo.db;
 
-import android.arch.persistence.room.Database;
-import android.arch.persistence.room.RoomDatabase;
+
+import androidx.room.Database;
+import androidx.room.RoomDatabase;
 
 import com.example.taipeizoo.model.ZooField;
 
-@Database(entities = {ZooField.class}, version = 1)
+@Database(entities = {ZooField.class}, version = 1, exportSchema = false)
 public abstract class ZooDatabase extends RoomDatabase {
     public abstract ZooFieldDao getZooFieldDao();
 }
