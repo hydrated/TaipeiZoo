@@ -9,22 +9,17 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.taipeizoo.MainApplication;
 import com.example.taipeizoo.R;
+import com.example.taipeizoo.fragment.PlantListFragment;
 import com.example.taipeizoo.fragment.ZooFieldDetailFragment;
 import com.example.taipeizoo.model.ZooField;
-import com.example.taipeizoo.service.Resource;
 import com.example.taipeizoo.viewmodel.PlantViewModel;
 import com.example.taipeizoo.viewmodel.ZooFieldViewModel;
-
-import java.util.List;
-import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -45,6 +40,8 @@ public class ZooFieldDetailActivity extends AppCompatActivity {
     ViewModelProvider.Factory viewModelFactory;
     private PlantViewModel plantViewModel;
     private ZooFieldViewModel zooFieldViewModel;
+    private PlantListFragment plantListFragment;
+    private ZooFieldDetailFragment zooFieldDetailFragment;
 
     @BindView(R.id.content_view)
     View view;
@@ -62,28 +59,36 @@ public class ZooFieldDetailActivity extends AppCompatActivity {
         zooFieldViewModel = ViewModelProviders.of(this, viewModelFactory).get(ZooFieldViewModel.class);
         plantViewModel = ViewModelProviders.of(this, viewModelFactory).get(PlantViewModel.class);
 
-        // TODO: nested object searching.
+        // TODO: nested object observation.
         zooFieldViewModel.getZooFields().observe(this, listResource -> {
             ZooField selectedZooField = null;
             if (listResource == null || listResource.data == null) return;
             for (ZooField zooField : listResource.data) {
-                if (zooField._id == getIntent().getIntExtra(FLAG_EXTRA_ZOO_FIELD_ID, -1)){
+                if (zooField._id == getIntent().getIntExtra(FLAG_EXTRA_ZOO_FIELD_ID, -1)) {
                     selectedZooField = zooField;
                 }
             }
             if (selectedZooField == null) return;
+            if (getSupportActionBar() != null) {
+                getSupportActionBar().setTitle(selectedZooField.E_Name);
+            }
+            zooFieldDetailFragment.setZooDetail(selectedZooField);
             plantViewModel.getPlantsByArea(selectedZooField.E_Name).observe(this, listResource1 -> {
-                Log.d("hydrated", "");
+                plantListFragment.setPlants(listResource1);
             });
         });
 
     }
 
     private void init() {
-        Fragment fragment = new ZooFieldDetailFragment();
+        plantListFragment = PlantListFragment.getFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.content_view, fragment);
+        transaction.replace(R.id.content_view, plantListFragment);
         transaction.commit();
+        zooFieldDetailFragment = ZooFieldDetailFragment.getFragment();
+        FragmentTransaction transaction1 = getSupportFragmentManager().beginTransaction();
+        transaction1.replace(R.id.detail_container, zooFieldDetailFragment);
+        transaction1.commit();
     }
 
     @Override

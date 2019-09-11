@@ -4,18 +4,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <RelativeLayout
-        android:id="@+id/detail_container"
+    <com.example.taipeizoo.ui.PlantListView
+        android:id="@+id/plant_list_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/content_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </RelativeLayout>
+    </com.example.taipeizoo.ui.PlantListView>
 
 </LinearLayout>
