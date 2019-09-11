@@ -4,6 +4,7 @@ import android.app.Application;
 
 import androidx.room.Room;
 
+import com.example.taipeizoo.db.PlantDao;
 import com.example.taipeizoo.db.ZooDatabase;
 import com.example.taipeizoo.db.ZooFieldDao;
 
@@ -35,4 +36,11 @@ public class DbModule {
     ZooFieldDao provideZooFieldDao(ZooDatabase zooDatabase) {
         return zooDatabase.getZooFieldDao();
     }
+
+    @Singleton
+    @Provides
+    PlantDao providePlantDao(ZooDatabase zooDatabase) {
+        return zooDatabase.getPlantDao();
+    }
+
 }

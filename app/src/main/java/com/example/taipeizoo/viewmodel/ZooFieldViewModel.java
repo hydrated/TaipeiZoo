@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.taipeizoo.model.ZooField;
-import com.example.taipeizoo.repository.ZooFieldRepository;
+import com.example.taipeizoo.repository.ZooRepository;
 import com.example.taipeizoo.service.Resource;
 
 import java.util.List;
@@ -16,8 +16,8 @@ public class ZooFieldViewModel extends ViewModel {
     private final LiveData<Resource<List<ZooField>>> zooFields;
 
     @Inject
-    public ZooFieldViewModel(ZooFieldRepository zooFieldRepository) {
-        zooFields = zooFieldRepository.loadZooFields();
+    public ZooFieldViewModel(ZooRepository zooRepository) {
+        zooFields = zooRepository.loadZooFields();
     }
 
     public LiveData<Resource<List<ZooField>>> getZooFields() {

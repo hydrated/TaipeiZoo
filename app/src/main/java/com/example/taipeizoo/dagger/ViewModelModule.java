@@ -4,6 +4,7 @@ package com.example.taipeizoo.dagger;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.taipeizoo.viewmodel.PlantViewModel;
 import com.example.taipeizoo.viewmodel.ViewModelFactory;
 import com.example.taipeizoo.viewmodel.ZooFieldViewModel;
 
@@ -19,6 +20,12 @@ public abstract class ViewModelModule {
     @ViewModelKey(ZooFieldViewModel.class)
     @SuppressWarnings("unused")
     abstract ViewModel bindsZooFieldViewModel(ZooFieldViewModel zooFieldViewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(PlantViewModel.class)
+    @SuppressWarnings("unused")
+    abstract ViewModel bindPlantViewModel(PlantViewModel plantViewModel);
 
 
     @Binds

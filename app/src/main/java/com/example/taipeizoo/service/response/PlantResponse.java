@@ -1,11 +1,11 @@
 package com.example.taipeizoo.service.response;
 
-import com.example.taipeizoo.model.ZooField;
+import com.example.taipeizoo.model.Plant;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class ZooFieldResponse {
+public class PlantResponse {
 
     @SerializedName("result")
     public Result result;
@@ -14,10 +14,10 @@ public class ZooFieldResponse {
         public Integer limit;
         public Integer offset;
         public String sort;
-        public List<ZooField> results;
+        public List<Plant> results;
     }
 
-    public List<ZooField> getZooFields() {
+    public List<Plant> getPlants() {
         return result.results;
     }
 }

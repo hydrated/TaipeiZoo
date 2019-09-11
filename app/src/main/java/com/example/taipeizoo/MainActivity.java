@@ -10,10 +10,12 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.taipeizoo.db.ZooDatabase;
+import com.example.taipeizoo.model.Plant;
 import com.example.taipeizoo.model.ZooField;
 import com.example.taipeizoo.service.Resource;
 import com.example.taipeizoo.service.request.ZooApi;
 import com.example.taipeizoo.ui.ZooFieldListView;
+import com.example.taipeizoo.viewmodel.PlantViewModel;
 import com.example.taipeizoo.viewmodel.ZooFieldViewModel;
 
 import java.util.List;
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements ZooFieldListView.
     @Inject
     ViewModelProvider.Factory viewModelFactory;
     private ZooFieldViewModel zooFieldViewModel;
+    private PlantViewModel plantViewModel;
     @Inject
     ZooDatabase zooDatabase;
     @Inject
@@ -49,6 +52,11 @@ public class MainActivity extends AppCompatActivity implements ZooFieldListView.
         zooFieldViewModel.getZooFields().observe(this, listResource -> {
             zooFieldListView.setZooFieldList(listResource.data);
         });
+        plantViewModel = ViewModelProviders.of(this, viewModelFactory).get(PlantViewModel.class);
+        plantViewModel.getPlants().observe(this, listResource -> {
+            Log.d("hydrated", "");
+        });
+
     }
 
     @Override
