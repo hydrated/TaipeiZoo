@@ -11,15 +11,19 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.taipeizoo.MainApplication;
 import com.example.taipeizoo.R;
 import com.example.taipeizoo.fragment.ZooFieldDetailFragment;
+import com.example.taipeizoo.model.ZooField;
+import com.example.taipeizoo.service.Resource;
 import com.example.taipeizoo.viewmodel.PlantViewModel;
 import com.example.taipeizoo.viewmodel.ZooFieldViewModel;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.inject.Inject;
@@ -29,14 +33,18 @@ import butterknife.ButterKnife;
 
 public class ZooFieldDetailActivity extends AppCompatActivity {
 
-    public static void start(Context context) {
+    public static final String FLAG_EXTRA_ZOO_FIELD_ID = "EXTRA_ZOO_FIELD";
+
+    public static void start(Context context, ZooField zooField) {
         Intent intent = new Intent(context, ZooFieldDetailActivity.class);
+        intent.putExtra(FLAG_EXTRA_ZOO_FIELD_ID, zooField._id);
         context.startActivity(intent);
     }
 
     @Inject
     ViewModelProvider.Factory viewModelFactory;
     private PlantViewModel plantViewModel;
+    private ZooFieldViewModel zooFieldViewModel;
 
     @BindView(R.id.content_view)
     View view;
@@ -51,9 +59,22 @@ public class ZooFieldDetailActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         init();
 
+        zooFieldViewModel = ViewModelProviders.of(this, viewModelFactory).get(ZooFieldViewModel.class);
         plantViewModel = ViewModelProviders.of(this, viewModelFactory).get(PlantViewModel.class);
-        plantViewModel.getPlants().observe(this, listResource -> {
-            Log.d("hydrated", "");
+
+        // TODO: nested object searching.
+        zooFieldViewModel.getZooFields().observe(this, listResource -> {
+            ZooField selectedZooField = null;
+            if (listResource == null || listResource.data == null) return;
+            for (ZooField zooField : listResource.data) {
+                if (zooField._id == getIntent().getIntExtra(FLAG_EXTRA_ZOO_FIELD_ID, -1)){
+                    selectedZooField = zooField;
+                }
+            }
+            if (selectedZooField == null) return;
+            plantViewModel.getPlantsByArea(selectedZooField.E_Name).observe(this, listResource1 -> {
+                Log.d("hydrated", "");
+            });
         });
 
     }

@@ -24,4 +24,7 @@ public interface PlantDao {
 
     @Query("SELECT * FROM plant")
     LiveData<List<Plant>> getPlantsAsLiveData();
+
+    @Query("SELECT * FROM plant where F_Location LIKE :area")
+    LiveData<List<Plant>> getPlantsByAreaAsLiveData(String area);
 }

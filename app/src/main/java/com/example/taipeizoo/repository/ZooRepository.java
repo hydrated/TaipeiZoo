@@ -79,4 +79,8 @@ public class ZooRepository {
         }.getAsLiveData();
     }
 
+    public LiveData<List<Plant>> getPlantsByArea(String area) {
+        return plantDao.getPlantsByAreaAsLiveData("%" + area + "%");
+    }
+
 }

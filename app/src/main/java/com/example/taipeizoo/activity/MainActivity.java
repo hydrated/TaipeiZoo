@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements ZooFieldListView.
 
     @Override
     public void onZooFieldClicked(ZooField zooField) {
-        ZooFieldDetailActivity.start(this);
+        ZooFieldDetailActivity.start(this, zooField);
         overridePendingTransition(R.anim.enter, R.anim.exit);
     }
 }
