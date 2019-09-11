@@ -56,6 +56,7 @@ public class ZooRepository {
         }.getAsLiveData();
     }
 
+    // TODO: shouldFetch strategy
     public LiveData<Resource<List<Plant>>> loadAllPlants() {
         return new NetworkBoundResource<List<Plant>, PlantResponse>() {
 
