@@ -46,11 +46,13 @@ public class MainActivity extends AppCompatActivity implements ZooFieldListView.
         ((MainApplication) getApplication()).getComponent().inject(this);
 
         zooFieldViewModel = ViewModelProviders.of(this, viewModelFactory).get(ZooFieldViewModel.class);
-        zooFieldViewModel.getZooFields().observe(this, listResource -> Log.d("hydrated", ""+listResource));
+        zooFieldViewModel.getZooFields().observe(this, listResource -> {
+            zooFieldListView.setZooFieldList(listResource.data);
+        });
     }
 
     @Override
     public void onZooFieldClicked(ZooField zooField) {
-
+        Log.d("hydrated", zooField.E_Name);
     }
 }

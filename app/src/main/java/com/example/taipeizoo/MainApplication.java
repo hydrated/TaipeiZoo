@@ -7,10 +7,7 @@ import com.example.taipeizoo.dagger.AppModule;
 import com.example.taipeizoo.dagger.DaggerAppComponent;
 import com.example.taipeizoo.dagger.DbModule;
 import com.example.taipeizoo.dagger.NetModule;
-import com.example.taipeizoo.service.request.ZooApi;
 
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainApplication extends Application {
 
