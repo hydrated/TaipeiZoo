@@ -1,9 +1,9 @@
 package com.example.taipeizoo.dagger;
 
-import com.example.taipeizoo.MainActivity;
+import com.example.taipeizoo.activity.MainActivity;
 import com.example.taipeizoo.MainApplication;
-import com.example.taipeizoo.db.ZooDatabase;
-import com.example.taipeizoo.db.ZooFieldDao;
+import com.example.taipeizoo.activity.PlantDetailActivity;
+import com.example.taipeizoo.activity.ZooFieldDetailActivity;
 
 import javax.inject.Singleton;
 
@@ -14,5 +14,9 @@ public interface AppComponent {
     void inject(MainApplication application);
 
     void inject(MainActivity activity);
+
+    void inject(PlantDetailActivity activity);
+
+    void inject(ZooFieldDetailActivity activity);
 
 }

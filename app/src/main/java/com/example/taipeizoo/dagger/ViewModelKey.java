@@ -11,14 +11,6 @@ import java.lang.annotation.Target;
 
 import dagger.MapKey;
 
-/**
- * ViewModel Key which serves as the unique key for keeping the viewmodel instances in the factory
- * <p>
- * Author: Lajesh D
- * Email: lajeshds2007@gmail.com
- * Created: 7/24/2018
- * Modified: 7/24/2018
- */
 @Documented
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
