@@ -17,7 +17,9 @@ import com.example.taipeizoo.MainApplication;
 import com.example.taipeizoo.R;
 import com.example.taipeizoo.fragment.PlantListFragment;
 import com.example.taipeizoo.fragment.ZooFieldDetailFragment;
+import com.example.taipeizoo.model.Plant;
 import com.example.taipeizoo.model.ZooField;
+import com.example.taipeizoo.ui.PlantListView;
 import com.example.taipeizoo.viewmodel.PlantViewModel;
 import com.example.taipeizoo.viewmodel.ZooFieldViewModel;
 
@@ -26,7 +28,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ZooFieldDetailActivity extends AppCompatActivity {
+public class ZooFieldDetailActivity extends AppCompatActivity implements PlantListView.PlantListViewListener {
 
     public static final String FLAG_EXTRA_ZOO_FIELD_ID = "EXTRA_ZOO_FIELD";
 
@@ -42,9 +44,6 @@ public class ZooFieldDetailActivity extends AppCompatActivity {
     private ZooFieldViewModel zooFieldViewModel;
     private PlantListFragment plantListFragment;
     private ZooFieldDetailFragment zooFieldDetailFragment;
-
-    @BindView(R.id.content_view)
-    View view;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -107,5 +106,11 @@ public class ZooFieldDetailActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
+    }
+
+    @Override
+    public void onPlantClicked(Plant plant) {
+        PlantDetailActivity.start(this, plant);
+        overridePendingTransition(R.anim.enter, R.anim.exit);
     }
 }

@@ -24,6 +24,7 @@
         </activity>
 
         <activity android:name=".activity.ZooFieldDetailActivity"></activity>
+        <activity android:name=".activity.PlantDetailActivity"></activity>
     </application>
 
 </manifest>
