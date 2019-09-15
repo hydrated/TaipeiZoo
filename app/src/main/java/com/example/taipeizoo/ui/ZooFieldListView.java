@@ -24,6 +24,8 @@ import com.bumptech.glide.util.ViewPreloadSizeProvider;
 import com.example.taipeizoo.R;
 import com.example.taipeizoo.model.ZooField;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -143,6 +145,8 @@ public class ZooFieldListView extends RecyclerView {
         protected ImageView image;
         @BindView(R.id.title)
         protected TextView name;
+        @BindView(R.id.description)
+        protected TextView description;
 
         public ViewHolderZooField(View view, ZooFieldAdapter adapter) {
             super(view);
@@ -156,6 +160,8 @@ public class ZooFieldListView extends RecyclerView {
             adapter.getRequestManager()
                     .load(zooField.E_Pic_URL)
                     .into(image);
+            name.setText(zooField.E_Name);
+            description.setText(zooField.E_Info);
             view.setTag(position);
         }
 

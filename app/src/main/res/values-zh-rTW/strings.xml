@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">TaipeiZoo</string>
     <string name="open_in_web">在網頁開啟</string>
+    <string name="plant_name">名稱</string>
+    <string name="plant_description">簡介</string>
+    <string name="plant_recognition">辨認方式</string>
+    <string name="plant_functionality">功能性</string>
+    <string name="plant_last_update">最後更新</string>
+    <string name="plant_alias">別名</string>
 </resources>

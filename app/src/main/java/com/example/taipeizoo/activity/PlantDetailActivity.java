@@ -41,7 +41,6 @@ public class PlantDetailActivity extends AppCompatActivity {
     @Inject
     ViewModelProvider.Factory viewModelFactory;
     private PlantViewModel plantViewModel;
-    private ZooFieldViewModel zooFieldViewModel;
     private PlantDetailFragment plantDetailFragment;
 
     @Override

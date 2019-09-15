@@ -15,8 +15,6 @@ import javax.inject.Inject;
 public class MainApplication extends Application {
 
     private AppComponent mComponent;
-    @Inject
-    ZooRepository zooRepository;
 
     @Override
     public void onCreate() {
@@ -28,8 +26,6 @@ public class MainApplication extends Application {
                 .netModule(new NetModule(this, BuildConfig.URL))
                 .build();
         mComponent.inject(this);
-
-        zooRepository.loadAllPlants();
 
     }
 

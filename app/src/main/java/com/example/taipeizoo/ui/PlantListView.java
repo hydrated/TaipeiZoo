@@ -142,6 +142,8 @@ public class PlantListView extends RecyclerView {
         protected ImageView image;
         @BindView(R.id.title)
         protected TextView name;
+        @BindView(R.id.description)
+        protected TextView description;
 
         public ViewHolderPlant(View view, PlantAdapter adapter) {
             super(view);
@@ -155,6 +157,8 @@ public class PlantListView extends RecyclerView {
             adapter.getRequestManager()
                     .load(plant.F_Pic01_URL)
                     .into(image);
+            name.setText(plant.F_Name_Ch);
+            description.setText(plant.F_Feature);
             view.setTag(position);
         }
 

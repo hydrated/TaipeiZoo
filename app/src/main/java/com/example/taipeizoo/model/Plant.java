@@ -3,6 +3,8 @@ package com.example.taipeizoo.model;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.google.gson.annotations.SerializedName;
+
 @Entity(tableName = "plant")
 public class Plant {
     public String F_Name_Latin;
@@ -37,6 +39,7 @@ public class Plant {
     public String F_pdf01_URL;
     public String F_Vedio_URL;
     public String F_Genus;
+    @SerializedName("F_Function＆Application")
     public String F_Function;
     public String F_Voice03_URL;
     public String F_Update;

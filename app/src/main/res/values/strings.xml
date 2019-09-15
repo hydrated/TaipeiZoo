@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">TaipeiZoo</string>
     <string name="open_in_web">Open in web</string>
+    <string name="plant_name">Name</string>
+    <string name="plant_description">description</string>
+    <string name="plant_recognition">Recognition</string>
+    <string name="plant_functionality">Functionality</string>
+    <string name="plant_last_update">Last update:</string>
+    <string name="plant_alias">Alias</string>
 </resources>

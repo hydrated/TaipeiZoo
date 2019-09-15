@@ -28,14 +28,20 @@ public class PlantDetailFragment extends Fragment {
         return new PlantDetailFragment();
     }
 
-    @BindView(R.id.detail_image)
+    @BindView(R.id.image)
     ImageView image;
-    @BindView(R.id.detail_description)
+    @BindView(R.id.name)
+    TextView name;
+    @BindView(R.id.alias)
+    TextView alias;
+    @BindView(R.id.description)
     TextView description;
-    @BindView(R.id.detail_note)
-    TextView note;
-    @BindView(R.id.detail_url)
-    TextView url;
+    @BindView(R.id.recognition)
+    TextView recognition;
+    @BindView(R.id.functionality)
+    TextView functionality;
+    @BindView(R.id.last_update)
+    TextView last_update;
 
     @Nullable
     @Override
@@ -62,7 +68,12 @@ public class PlantDetailFragment extends Fragment {
                 .load(plant.F_Pic01_URL)
                 .into(image);
 
-        description.setText(plant.F_Name_Ch);
+        name.setText(plant.F_Name_Ch);
+        description.setText(plant.F_Brief);
+        alias.setText(plant.F_AlsoKnown);
+        recognition.setText(plant.F_Feature);
+        functionality.setText(plant.F_Function);
+        last_update.setText("" + plant.F_Update);
 
     }
 }

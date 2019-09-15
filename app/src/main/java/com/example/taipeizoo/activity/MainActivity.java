@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements ZooFieldListView.
     @Inject
     ViewModelProvider.Factory viewModelFactory;
     private ZooFieldViewModel zooFieldViewModel;
+    private PlantViewModel plantViewModel;
     @Inject
     ZooDatabase zooDatabase;
     @Inject
@@ -53,6 +54,9 @@ public class MainActivity extends AppCompatActivity implements ZooFieldListView.
         zooFieldViewModel = ViewModelProviders.of(this, viewModelFactory).get(ZooFieldViewModel.class);
         zooFieldViewModel.getZooFields().observe(this, listResource -> {
             zooFieldListView.setZooFieldList(listResource.data);
+        });
+        plantViewModel = ViewModelProviders.of(this, viewModelFactory).get(PlantViewModel.class);
+        plantViewModel.getPlants().observe(this, listResource -> {
         });
 
     }
