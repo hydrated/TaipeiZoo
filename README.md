@@ -22,7 +22,7 @@ https://data.taipei/#/dataset/detail?id=1ed45a8a-d26a-4a5f-b544-788a4071eea2
 6. ButterKnife: https://github.com/JakeWharton/butterknife
 
 <p align="center">
-  <img src="https://vignette.wikia.nocookie.net/brawlstars/images/3/34/Rosa_Skin-Default.png/revision/latest?cb=20190416193326" width="250">
-  <img src="https://vignette.wikia.nocookie.net/brawlstars/images/3/34/Rosa_Skin-Default.png/revision/latest?cb=20190416193326" width="250">
-  <img src="https://vignette.wikia.nocookie.net/brawlstars/images/3/34/Rosa_Skin-Default.png/revision/latest?cb=20190416193326" width="250">
+  <img src="https://raw.githubusercontent.com/hydrated/TaipeiZoo/master/raw/screen1.png" width="250">
+  <img src="https://raw.githubusercontent.com/hydrated/TaipeiZoo/master/raw/screen2.png" width="250">
+  <img src="https://raw.githubusercontent.com/hydrated/TaipeiZoo/master/raw/screen3.png" width="250">
 </p>
